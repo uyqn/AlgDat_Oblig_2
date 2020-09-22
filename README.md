@@ -9,7 +9,7 @@ Oppgaven er levert av følgende studenter:
 * Marius Havnaas, s341877, s341877@oslomet.no
 * Ruben Sønstabø Johanssen, s341851, s341851@oslomet.no
 
-# Arbeidsfordeling
+Vi har brukt git til å dokumentere arbeidet vårt. Vi har 16 commits totalt, og hver logg-melding beskriver det vi har gjort av endringer.
 
 I oppgaven har vi hatt følgende arbeidsfordeling:
 * Uy har hatt hovedansvar for oppgave 
