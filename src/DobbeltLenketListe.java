@@ -62,14 +62,23 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public DobbeltLenketListe(T[] a) {      //METODEN ER IKKE FERDIG ENNÅ! :P
         //Kaster avvik om tabellen er null.
         Objects.requireNonNull(a, "Kan ikke lage liste av null-verdi!");
+        antall = 0;
+        endringer = 0;
 
         int i = 0;
+        while(i<a.length && a[i] == null) {
+            i++;
+        }
+        if(i<a.length){
+            //Det er funnet et ellement som ikke er null.
+            hode = hale = new Node<>(a[i]);
+            i++;
+            antall++;
+        }
         while(i<a.length){
             if(a[i]!=null){
-                Node<T> current = new Node<>(a[a.length-1-i]);
-                current.neste = current;
-                current.forrige = current;
-                hode = current;
+                hale.neste = new Node<>(a[i], hale, null);
+                hale = hale.neste;
                 antall++;
             }
             i++;
