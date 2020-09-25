@@ -33,22 +33,22 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     // hjelpemetode
     private Node<T> finnNode(int indeks) {
-        if(antall == 0)
+        if(antall == 0) //Sjekker om listen er tom.
             throw new IndexOutOfBoundsException("Kan ikke finne node i en tom-liste");
 
-        Node<T> current;
-        if(indeks<antall/2) {
-            current = hode;
+        Node<T> current; //Initierer current node.
+        if(indeks<antall/2) {   //Sjekker om det er mest effektivt å bruke hode eller hale til å lete.
+            current = hode;     //Setter current lik hode.
             for (int i = 0; i < indeks; i++) {
-                current = current.neste;
+                current = current.neste;        //Løper gjennom listen frem til i når indeks etterspurt.
             }
         } else {
-            current = hale;
+            current = hale;     //Setter current lik hale.
             for (int i = 1; i < antall-indeks; i++) {
-                current = current.forrige;
+                current = current.forrige;        //Løper gjennom listen frem til i når indeks etterspurt.
             }
         }
-        return current;
+        return current;         //Returnerer current
     }
 
     // konstruktør

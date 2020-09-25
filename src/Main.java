@@ -3,9 +3,14 @@ public class Main {
         Character[] c = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',};
 
         DobbeltLenketListe<Character> liste = new DobbeltLenketListe<>(c);
+        /*
         System.out.println(liste.subliste(3,8));
         System.out.println(liste.subliste(5,5));
         System.out.println(liste.subliste(8, liste.antall()));
         System.out.println(liste.subliste(0, 11));
+*/
+        System.out.println(liste.hent(3));
+        System.out.println(liste.oppdater(3, 'K'));
+        System.out.println(liste.hent(3));
     }
 }
