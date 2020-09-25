@@ -102,7 +102,23 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean leggInn(T verdi) {
-        throw new UnsupportedOperationException("Ikke laget ennå!");
+        //Sjekker om verdi er null;
+        Objects.requireNonNull(verdi, "Kan ikke legge til en null-verdi!");
+
+        //Dersom listen er tom:
+        if(antall == 0) {
+            hode = hale = new Node<>(verdi); //Setter hode og hale til den nye noden med verdi
+        }
+        else { //Dersom listen ikke er tom
+            //Sett den nye noden bak halen og forrige-peker mot hale
+            hale.neste = new Node<>(verdi, hale, null);
+
+            //Oppdaterer halen til å være den nye noden som nettopp har blitt lagt inn
+            hale = hale.neste;
+        }
+        antall++; //Oppdaterer antall
+        endringer++; //Oppdater endringer
+        return true; //returner true innleggelse suksessful!
     }
 
     @Override
