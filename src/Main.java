@@ -1,12 +1,11 @@
 public class Main {
     public static void main(String[] args) {
-        String[] s1 = {}, s2 = {"A"}, s3 = {null, "A", null, "B", null};
+        Character[] c = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',};
 
-        DobbeltLenketListe<String> l1 = new DobbeltLenketListe<>(s1);
-        DobbeltLenketListe<String> l2 = new DobbeltLenketListe<>(s2);
-        DobbeltLenketListe<String> l3 = new DobbeltLenketListe<>(s3);
-
-        System.out.println(l1 + " " + l2 + " " + l3);
-        System.out.println(l1.omvendtString() + " " + l2.omvendtString() + " " + l3.omvendtString());
+        DobbeltLenketListe<Character> liste = new DobbeltLenketListe<>(c);
+        System.out.println(liste.subliste(3,8));
+        System.out.println(liste.subliste(5,5));
+        System.out.println(liste.subliste(8, liste.antall()));
+        System.out.println(liste.subliste(0, 11));
     }
 }
