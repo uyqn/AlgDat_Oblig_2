@@ -138,7 +138,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Ikke laget ennå!");
+        //Starter med den første parantesen.
+        //Lager en node-peker
+        //Så lenge node-pekeren ikke peker på hale legg til verdien til noden i strengen etterfulgt med ','
+        //Legg så tilslutt verdien til halen etterfulgt med ']'
     }
 
     public String omvendtString() {
