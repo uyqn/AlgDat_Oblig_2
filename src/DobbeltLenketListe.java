@@ -134,8 +134,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public void leggInn(int indeks, T verdi) {
         //Kast avvik dersom indeks < 0 eller om indeks > antall
-        if(indeks < 0 || indeks > antall)
-            throw new IndexOutOfBoundsException("Indeks må være mellom 0 og " + antall);
+        indeksKontroll(indeks, true);
         Objects.requireNonNull(verdi, "Verdi kan ikke være null");  //Kast avvik dersom verdi = null
 
         //Dersom listen er tom så settes hode og hale til den nye node(verdi)
