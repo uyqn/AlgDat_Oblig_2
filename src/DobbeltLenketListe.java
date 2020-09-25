@@ -33,6 +33,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     // hjelpemetode
     private Node<T> finnNode(int indeks) {
+        if(antall == 0)
+            throw new IndexOutOfBoundsException("Kan ikke finne node i en tom-liste");
+
         Node<T> current;
         if(indeks<antall/2) {
             current = hode;
@@ -58,12 +61,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     // konstruktør
     public DobbeltLenketListe(T[] a) {      //METODEN ER IKKE FERDIG ENNÅ! :P
         //Kaster avvik om tabellen er null.
-        Objects.requireNonNull(a, "Tabellen " + a + "er null!");
+        Objects.requireNonNull(a, "Kan ikke lage liste av null-verdi!");
 
         int i = 0;
         while(i<a.length){
             if(a[i]!=null){
-                Node<T> current = new Node<T>(a[a.length-1-i]);
+                Node<T> current = new Node<>(a[a.length-1-i]);
                 current.neste = current;
                 current.forrige = current;
                 hode = current;
@@ -186,5 +189,19 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
     } // DobbeltLenketListeIterator
+
+    private void fratilKontroll(int fra, int til) {
+        if (fra < 0)                                  // fra er negativ
+            throw new IndexOutOfBoundsException
+                    ("fra(" + fra + ") er negativ!");
+
+        if (til > antall)                          // til er utenfor tabellen
+            throw new IndexOutOfBoundsException
+                    ("til(" + til + ") > antall(" + antall + ")");
+
+        if (fra > til)                                // fra er større enn til
+            throw new IllegalArgumentException
+                    ("fra(" + fra + ") > til(" + til + ") - illegalt intervall!");
+    }
 
 } // DobbeltLenketListe
