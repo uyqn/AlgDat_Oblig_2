@@ -105,7 +105,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T hent(int indeks) {
-        throw new UnsupportedOperationException("Ikke laget ennå!");
+        indeksKontroll(indeks, indeks>antall);
+        return finnNode(indeks).verdi;
     }
 
     @Override
