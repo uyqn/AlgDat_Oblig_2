@@ -62,26 +62,26 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public DobbeltLenketListe(T[] a) {
         //Kaster avvik om tabellen er null.
         Objects.requireNonNull(a, "Kan ikke lage liste av null-verdi!");
-        antall = 0;
-        endringer = 0;
+        antall = 0;     //Instansierer antall.
+        endringer = 0;  //Instansierer endringer.
 
         int i = 0;
-        while(i<a.length && a[i] == null) {
-            i++;
+        while(i<a.length && a[i] == null) {     //Finner første indeks i a[] som ikke er null. Dersom den ikke finner noe, vil i være større enn a.length og resten av koden vil bli hoppet over.
+            i++;                                //Øker i.
         }
-        if(i<a.length){
+        if(i<a.length){     //Dersom i er mindre enn a.length, har while løkken over funnet en verdi som ikke er null.
             //Det er funnet et ellement som ikke er null.
-            hode = hale = new Node<>(a[i]);
-            i++;
-            antall++;
+            hode = hale = new Node<>(a[i]);     //Setter hode og hale lik den første ikke-null verdien som er funnet.
+            i++;                                //Øker i.
+            antall++;                           //Øker antall.
         }
-        while(i<a.length){
-            if(a[i]!=null){
-                hale.neste = new Node<>(a[i], hale, null);
-                hale = hale.neste;
-                antall++;
+        while(i<a.length){      //Fortsetter på løkken over ved å ta i bruk samme i verdi som dn brukt i løkken over.
+            if(a[i]!=null){     //Sjekker at a[i] ikke er null.
+                hale.neste = new Node<>(a[i], hale, null);      //Legger til nytt objekt av hale og tilegner pekere.
+                hale = hale.neste;                                    //Angir siste ogjekt hale pekeren.
+                antall++;                                             //Øker antall.
             }
-            i++;
+            i++;                                                      //Øker i.
         }
     }
 
@@ -102,12 +102,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int antall() {
-        return antall;
+        return antall;          //Returnerer antall objekter i listen.
     }
 
     @Override
     public boolean tom() {
-        return hode == null;
+        return hode == null;    //Returnerer true dersom array er tomt, retunerer ellers false.
     }
 
     @Override
@@ -152,8 +152,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T hent(int indeks) {
-        indeksKontroll(indeks, false);
-        return finnNode(indeks).verdi;
+        indeksKontroll(indeks, false);  //Kontrollerer indeks.
+        return finnNode(indeks).verdi;          //Returnerer verdi for gitt indeks.
     }
 
     @Override
@@ -165,10 +165,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public T oppdater(int indeks, T nyverdi) {
         indeksKontroll(indeks, false);
 
-        T temp = finnNode(indeks).verdi;
-        finnNode(indeks).verdi = nyverdi;
-        endringer++;
-        return temp;
+        T temp = finnNode(indeks).verdi;    //Lagrer nåværende verdi for retur.
+        finnNode(indeks).verdi = nyverdi;   //Oppdaterer ny verdi.
+        endringer++;                        //Oppdaterer endringer.
+        return temp;                        //Returnerer tidligere verdi.
     }
 
     @Override
