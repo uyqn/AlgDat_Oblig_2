@@ -139,25 +139,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public String toString() {
-        StringBuilder str = new StringBuilder("["); //Starter med den første parantesen.
-        Node<T> current = hode;                     //Lager en node-peker hode
-        while(current != hale) {                    //Så lenge pekeren ikke peker på halen
-            str.append(current.verdi).append(", "); //Setter inn verdien til peker noden i strengen
-            current = current.neste;                //Oppdaterer peker til neste node
-        }
-        str.append(current.verdi).append("]");      //Legger til hale-verdien
-        return str.toString();                      //Returnerer resultatet
+        return null;
     }
 
     public String omvendtString() {
-        StringBuilder str = new StringBuilder("["); //Starer med den første parantesen
-        Node<T> current = hale;                     //Lager en node-peker på hale
-        while(current != hode) {                    //Så lenge pekeren ikke peker på hode
-            str.append(current.verdi).append(", "); //Setter inn verdien til peker noden i strengen
-            current = current.forrige;              //Oppdaterer peker til forrige node
-        }
-        str.append(current.verdi).append("]");      //Legger til hode-verdien
-        return str.toString();                      //Returnerer resultatet
+        return null;
     }
 
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
