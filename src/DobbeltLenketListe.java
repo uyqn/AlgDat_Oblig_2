@@ -200,29 +200,27 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public String toString() {
-        StringBuilder str = new StringBuilder("[");                 //Starter med en åpen parantes
-        if(antall == 0) return str.append("]").toString();          //Hvis listen er tom returner med lukket parantes
+        StringBuilder str = new StringBuilder("[");         //Starter med en åpen parantes
+        if(antall == 0) return str.append("]").toString();  //Hvis listen er tom returner med lukket parantes
 
-        Node<T> current = hode;                                     //Lager en node peker, starter på hode
-        while(current != hale) {                                    //Så lenge pekeren ikke peker på hale
-            str.append(current.verdi).append(", ");                 //Legg til verdien til node i strengen
-            current = current.neste;                                //Oppdaterer node til neste peker
-        }
+        Node<T> i = hode;                                   //Lager en node peker, starter på hode
 
-        return str.append(current.verdi).append("]").toString();    //Returnerer streng med hale-verdi.
+        for(;i != hale ; i = i.neste)                       //Looper igjennom alle nodene utenom hale
+            str.append(i.verdi).append(", ");               //Legger til verdien til hver node
+
+        return str.append(i.verdi).append("]").toString();  //Returnerer streng med hale-verdi.
     }
 
     public String omvendtString() {
-        StringBuilder str = new StringBuilder("[");                 //Starter med åpen parantes
-        if(antall == 0) return str.append("]").toString();          //Returner med lukket parantes dersom listen er tom
+        StringBuilder str = new StringBuilder("[");         //Starter med åpen parantes
+        if(antall == 0) return str.append("]").toString();  //Returner med lukket parantes dersom listen er tom
 
-        Node<T> current = hale;                                     //Initierer peker på hale
-        while(current != hode) {                                    //Så lenge pekeren ikke peker på hodet
-            str.append(current.verdi).append(", ");                 //Legg til verdien til node i strengen
-            current = current.forrige;                              //Oppdaterer peker til forrige node
-        }
+        Node<T> i = hale;                                   //Initierer peker på hale
 
-        return str.append(current.verdi).append("]").toString();    //Returnerer streng med hode-verdi
+        for(; i != hode ; i = i.forrige)                    //Looper noder igjennom baklengs
+            str.append(i.verdi).append(", ");               //Legger til verdien til hver node
+
+        return str.append(i.verdi).append("]").toString();  //Returnerer streng med hode-verdi
     }
 
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
