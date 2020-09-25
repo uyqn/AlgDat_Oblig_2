@@ -87,7 +87,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     // subliste
     public Liste<T> subliste(int fra, int til) {
-        throw new UnsupportedOperationException("Ikke laget ennå!");
+        //Sjekker intervall med fratilkontroll
+        //Instansierer en ny DobbeltLenketListe
+        //Looper igjennom og legger elementer til subliste med leggInn og hent() metodene.
+        //Setter endringer til 0;
+        //Returnerer subliste.
     }
 
     @Override
