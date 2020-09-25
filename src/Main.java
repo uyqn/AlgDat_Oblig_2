@@ -7,6 +7,6 @@ public class Main {
 
         System.out.println(liste.antall() + " " + liste.tom());
 
-        System.out.println(liste.hent(2));
+
     }
 }

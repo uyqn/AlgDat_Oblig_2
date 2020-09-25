@@ -148,11 +148,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Ikke laget ennå!");
+        return null;
     }
 
     public String omvendtString() {
-        throw new UnsupportedOperationException("Ikke laget ennå!");
+        return null;
     }
 
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
