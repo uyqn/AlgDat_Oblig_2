@@ -133,7 +133,16 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public void leggInn(int indeks, T verdi) {
-        throw new UnsupportedOperationException("Ikke laget ennå!");
+        //Kast avvik dersom indeks < 0 eller om indeks > antall
+        //Kast avvik dersom verdi = null
+        //Dersom listen er tom så settes hode og hale til den nye node(verdi)
+        //Dersom indeks == 0 så skal noden legges først
+            //Sett hode-forrige-peker til den nye noden(verdi, null, hode)
+            //Oppdater hode til forrige node
+        //Dersom indeks == antall skal noden legges på slutten
+            //Sett hale-neste-peker til den nye noden(verdi, hale, null)
+            //Oppdater hale til neste node
+        //Ellers sett inn noden mellom to noder og oppdater pekere.
     }
 
     @Override
