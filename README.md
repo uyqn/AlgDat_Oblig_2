@@ -12,9 +12,9 @@ Oppgaven er levert av følgende studenter:
 Vi har brukt git til å dokumentere arbeidet vårt. Vi har 16 commits totalt, og hver logg-melding beskriver det vi har gjort av endringer.
 
 I oppgaven har vi hatt følgende arbeidsfordeling:
-* Uy har hatt hovedansvar for oppgave 
-* Marius har hatt hovedansvar for oppgave 
-* Ruben har hatt hovedansvar for oppgave 
+* Uy har hatt hovedansvar for oppgave 2, 3b, og 5
+* Marius har hatt hovedansvar for oppgave 6, 7, 8 og 9
+* Ruben har hatt hovedansvar for oppgave 1, 3a, 4 og 10
 
 # Beskrivelse av oppgaveløsning (maks 5 linjer per oppgave)
 
