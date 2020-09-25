@@ -134,15 +134,32 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public void leggInn(int indeks, T verdi) {
         //Kast avvik dersom indeks < 0 eller om indeks > antall
-        //Kast avvik dersom verdi = null
+        if(indeks < 0 || indeks > antall)
+            throw new IndexOutOfBoundsException("Indeks må være mellom 0 og " + antall);
+        Objects.requireNonNull(verdi, "Verdi kan ikke være null");  //Kast avvik dersom verdi = null
+
         //Dersom listen er tom så settes hode og hale til den nye node(verdi)
-        //Dersom indeks == 0 så skal noden legges først
+        if(antall == 0)
+            hode = hale = new Node<>(verdi);
+        else if(indeks == 0) { //Dersom indeks == 0 så skal noden legges først
             //Sett hode-forrige-peker til den nye noden(verdi, null, hode)
-            //Oppdater hode til forrige node
-        //Dersom indeks == antall skal noden legges på slutten
+            hode.forrige = new Node<>(verdi, null, hode);
+            hode = hode.forrige; //Oppdaterer hode til forrige node.
+        }
+        else if(indeks == antall) { //Dersom indeks == antall skal noden legges på slutten
             //Sett hale-neste-peker til den nye noden(verdi, hale, null)
-            //Oppdater hale til neste node
-        //Ellers sett inn noden mellom to noder og oppdater pekere.
+            hale.neste = new Node<>(verdi, hale, null);
+            hale = hale.neste; //Oppdater hale til neste node
+        }
+        else { //Ellers sett inn noden mellom to noder og oppdater pekere.
+            Node<T> p = finnNode(indeks-1); //Noden til venstre for den nye noden.
+            Node<T> q = p.neste; //Noden til høyre for den nye noden
+            p.neste = new Node<>(verdi, p, q); //Setter inn node: p <-> ny Node -> q
+            q.forrige = p.neste; //Oppdaterer q node peker til p <-> ny node <-> q
+        }
+
+        antall++;       //Oppdaterer antall
+        endringer++;    //Oppdaterer endringer
     }
 
     @Override
