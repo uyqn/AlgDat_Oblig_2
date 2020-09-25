@@ -33,9 +33,17 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     // hjelpemetode
     private Node<T> finnNode(int indeks) {
-        Node<T> current = hode;
-        for(int i = 0; i<indeks; i++){
-            current = current.neste;
+        Node<T> current;
+        if(indeks<antall/2) {
+            current = hode;
+            for (int i = 0; i < indeks; i++) {
+                current = current.neste;
+            }
+        } else {
+            current = hale;
+            for (int i = 1; i < antall-indeks; i++) {
+                current = current.forrige;
+            }
         }
         return current;
     }
