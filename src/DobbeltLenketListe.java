@@ -59,7 +59,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     // konstruktør
-    public DobbeltLenketListe(T[] a) {      //METODEN ER IKKE FERDIG ENNÅ! :P
+    public DobbeltLenketListe(T[] a) {
         //Kaster avvik om tabellen er null.
         Objects.requireNonNull(a, "Kan ikke lage liste av null-verdi!");
         antall = 0;
@@ -152,7 +152,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T hent(int indeks) {
-        indeksKontroll(indeks, indeks>antall);
+        indeksKontroll(indeks, false);
         return finnNode(indeks).verdi;
     }
 
@@ -163,7 +163,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T oppdater(int indeks, T nyverdi) {
-        throw new UnsupportedOperationException("Ikke laget ennå!");
+        indeksKontroll(indeks, false);
+
+        T temp = finnNode(indeks).verdi;
+        finnNode(indeks).verdi = nyverdi;
+        endringer++;
+        return temp;
     }
 
     @Override
