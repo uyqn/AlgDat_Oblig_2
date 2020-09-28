@@ -9,8 +9,9 @@ public class Main {
         System.out.println(liste.subliste(8, liste.antall()));
         System.out.println(liste.subliste(0, 11));
 */
-        System.out.println(liste.hent(3));
-        System.out.println(liste.oppdater(3, 'K'));
-        System.out.println(liste.hent(3));
+
+        System.out.println(liste.indeksTil('I'));
+        System.out.println(liste.inneholder('A'));
+
     }
 }
