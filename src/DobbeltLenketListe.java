@@ -170,7 +170,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int indeksTil(T verdi) {
-        throw new UnsupportedOperationException("Ikke laget ennå!");
+
+        for(int i = 0; i<antall(); i++){    //Løper gjennom liste for å sammenlikne verdier.
+            if(verdi==hent(i)){             //Sammenlikner verdi med verdi hentet fra hent metoden.
+                return i;                   //returnerer indeks til verdi dersom den er lik den oppgitte verdi.
+            }
+        }
+        return -1;                          //Ellers returneres -1.
     }
 
     @Override
