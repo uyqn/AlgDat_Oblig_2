@@ -173,7 +173,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public int indeksTil(T verdi) {
 
         for(int i = 0; i<antall(); i++){    //Løper gjennom liste for å sammenlikne verdier.
-            if(verdi.equals(hent(i))){             //Sammenlikner verdi med verdi hentet fra hent metoden.
+            if(verdi.equals(hent(i))){      //Sammenlikner verdi med verdi hentet fra hent metoden.
                 return i;                   //returnerer indeks til verdi dersom den er lik den oppgitte verdi.
             }
         }
@@ -231,7 +231,17 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
-        throw new UnsupportedOperationException("Ikke laget ennå!");
+        //Løkke som itererer listen
+        //Løkke som itererer for å finne maks
+        for(int i = 0; i < liste.antall();i++){
+            T maks = liste.hent(0);
+            for(int j = 1; j < liste.antall()-i; j++){  //Reduser list length med en for å ungå å ta med siste tall i ny sammenlikning.(Antall()-i)
+/*                if(liste.hent(j).compareTo(maks)){      //Må finne løsning på dette.
+                    maks = liste.hent(j);
+                }
+*/            }
+            //Flytt maks bakerst.
+        }
     }
 
     @Override
