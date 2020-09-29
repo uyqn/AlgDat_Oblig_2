@@ -231,27 +231,23 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
-        //Løkke som itererer listen
-        //Løkke som itererer for å finne maks
         T temp;
         T maks;
         int indeks;
+        //Løkke som itererer listen
         for(int i = 0; i < liste.antall(); i++){
-            maks = liste.hent(0);
-            indeks = 0;
-            for(int j = 1; j < liste.antall()-i; j++){  //Reduser list length med en for å ungå å ta med siste tall i ny sammenlikning.(Antall()-i)
-                if(c.compare(liste.hent(j), maks)>0){
-                    maks = liste.hent(j);
-                    indeks = j;
+            maks = liste.hent(0);   //Instansierer maks.
+            indeks = 0;                   //Instansierer indeks.
+            //Løkke som itererer for å finne maks
+            for(int j = 1; j < liste.antall()-i; j++){  //Reduser list length med en for å ungå å ta med siste tall i ny sammenlikning.(Antall()-i).
+                if(c.compare(liste.hent(j), maks)>0){   //Sjekker om ny verdi er større enn maks.
+                    maks = liste.hent(j);               //Endrer maks.
+                    indeks = j;                         //Oppdaterer indeks.
                 }
             }
-            //Flytt maks bakerst.
-            //Lagre siste verdi i liste som temp.
-            //Benytt oppdater() for å flytte verdi i index til siste indeks i liste.
-            //Benytt oppdater() for å flytte temp verdi til indeks i liste.
-            temp = liste.hent(liste.antall()-1-i);
-            liste.oppdater(liste.antall()-1-i, maks);
-            liste.oppdater(indeks, temp);
+            temp = liste.hent(liste.antall()-1-i);      //Setter siste verdi (indeks-i) i arrayet til temp.
+            liste.oppdater(liste.antall()-1-i, maks);   //Oppdaterer siste verdi (indeks-i) i arrayet.
+            liste.oppdater(indeks, temp);                     //Oppdaterer verdi på indeks til det som tidligere var siste verdi (indeks-i)
         }
     }
 
