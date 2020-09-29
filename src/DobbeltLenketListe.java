@@ -233,14 +233,25 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
         //Løkke som itererer listen
         //Løkke som itererer for å finne maks
-        for(int i = 0; i < liste.antall();i++){
-            T maks = liste.hent(0);
+        T temp;
+        T maks;
+        int indeks;
+        for(int i = 0; i < liste.antall(); i++){
+            maks = liste.hent(0);
+            indeks = 0;
             for(int j = 1; j < liste.antall()-i; j++){  //Reduser list length med en for å ungå å ta med siste tall i ny sammenlikning.(Antall()-i)
-/*                if(liste.hent(j).compareTo(maks)){      //Må finne løsning på dette.
+                if(c.compare(liste.hent(j), maks)>0){
                     maks = liste.hent(j);
+                    indeks = j;
                 }
-*/            }
+            }
             //Flytt maks bakerst.
+            //Lagre siste verdi i liste som temp.
+            //Benytt oppdater() for å flytte verdi i index til siste indeks i liste.
+            //Benytt oppdater() for å flytte temp verdi til indeks i liste.
+            temp = liste.hent(liste.antall()-1-i);
+            liste.oppdater(liste.antall()-1-i, maks);
+            liste.oppdater(indeks, temp);
         }
     }
 
