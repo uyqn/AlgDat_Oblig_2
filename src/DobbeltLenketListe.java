@@ -190,19 +190,43 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return temp;
     }
 
+    // R6 -->
     @Override
     public boolean fjern(T verdi) {
-        throw new UnsupportedOperationException("Ikke laget ennå!");
+        // Skal fjerne (og returnere) verdien på posisjon indeks (som først må sjekkes)
+            //
+
+        throw new UnsupportedOperationException("På vei ;) - Ruben");
     }
 
     @Override
     public T fjern(int indeks) {
-        throw new UnsupportedOperationException("Ikke laget ennå!");
+        // Skal fjerne verdi fra listen og så returnere true
+            //
+
+        throw new UnsupportedOperationException("På vei ;) - Ruben");
     }
 
+    // R7 -->
     @Override
     public void nullstill() {
-        throw new UnsupportedOperationException("Ikke laget ennå!");
+        // Skal «tømme» listen og nulle alt slik at «søppeltømmeren» kan hente alt som ikke lenger brukes.
+
+        // METODE 1:
+
+        // Starter i hode og går mot hale ved hjelpe pekeren neste
+            //
+
+        // Sett både hode og hale til null, antall til 0 og endringer økes
+            //
+
+
+        // METODE 2:
+
+        // Metode fjern(0) aka. den første noden fjernes, som går inntil listen er tom
+            //
+
+        throw new UnsupportedOperationException("På vei ;) - Ruben");
     }
 
     @Override
@@ -251,13 +275,24 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
     }
 
+
+    // R8b -->
     @Override
     public Iterator<T> iterator() {
-        throw new UnsupportedOperationException("Ikke laget ennå!");
+        // Returnere en instans av iteratorklassen
+
+        throw new UnsupportedOperationException("På vei ;) - Ruben");
     }
 
+    // R8d -->
     public Iterator<T> iterator(int indeks) {
-        throw new UnsupportedOperationException("Ikke laget ennå!");
+        // Indeksen er lovlig
+            //indeksKontroll()
+
+        // Returnere en instans av iteratorklassen ovenfor
+            // ^^
+
+        throw new UnsupportedOperationException("På vei ;) - Ruben");
     }
 
     private class DobbeltLenketListeIterator implements Iterator<T> {
@@ -271,8 +306,15 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             iteratorendringer = endringer;  // teller endringer
         }
 
+        // R8c -->
         private DobbeltLenketListeIterator(int indeks) {
-            throw new UnsupportedOperationException("Ikke laget ennå!");
+            // Sett pekeren "denne" til noden som hører til indeks
+                //
+
+            // Resten av koden er lik konstruktøren ovenfor
+                //^^
+
+            throw new UnsupportedOperationException("På vei ;) - Ruben");
         }
 
         @Override
@@ -280,14 +322,51 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             return denne != null;  // denne koden skal ikke endres!
         }
 
+        // R8a -->
         @Override
         public T next() {
-            throw new UnsupportedOperationException("Ikke laget ennå!");
+            // Sjekk om iteratorendringer er lik endringer
+                //
+
+            // Iteratorendringer ikke er lik endringer
+                // throw new ConcurrentModificationException("teratorendringer ikke er lik endringer");
+
+            // Det er ikke flere igjen i listen
+                // throw new NoSuchElementException("det ikke er flere igjen i listen");
+
+            throw new UnsupportedOperationException("På vei ;) - Ruben");
         }
 
+        // R9 -->
         @Override
         public void remove() {
-            throw new UnsupportedOperationException("Ikke laget ennå!");
+            // Hvis det ikke er tillatt å kalle denne metoden
+                // throw new IllegalStateException("Det ikke er tillatt å kalle denne metoden");
+
+            // Hvis endringer og iteratorendringer er forskjellige,
+                // throw new Concurrent-ModificationException("Endringer og iteratorendringer er forskjellige");
+
+            // Om de to ovenfor passeres settes fjernOK til usann/false
+                // ?
+
+            // Noden rett til venstre for p fjernes
+                // Den som skal fjernes er eneste verdi (antall == 1) --> Hode og hale må nulles
+                    //
+                // Den siste skal fjernes (denne == null) --> Hale må oppdateres
+                    //
+                // Den første skal fjernes (denne.forrige == hode) --> Hode må oppdateres
+                    //
+                // En node inne i listen skal fjernes (noden denne.forrige) --> Pekerne i nodene på hver må side oppdateres
+                    //
+
+            // Antall Reduseres
+                //
+
+            // Øker endringer og iteratorendringer
+                //
+
+
+            throw new UnsupportedOperationException("På vei ;) - Ruben");
         }
 
     } // DobbeltLenketListeIterator
