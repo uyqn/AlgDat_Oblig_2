@@ -33,6 +33,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     // hjelpemetode
     private Node<T> finnNode(int indeks) {
+        indeksKontroll(indeks, false);
+
         if(antall == 0) //Sjekker om listen er tom.
             throw new IndexOutOfBoundsException("Kan ikke finne node i en tom-liste");
 
@@ -183,6 +185,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public T oppdater(int indeks, T nyverdi) {
         indeksKontroll(indeks, false);
+        Objects.requireNonNull(nyverdi);
 
         T temp = finnNode(indeks).verdi;
         finnNode(indeks).verdi = nyverdi;
@@ -190,43 +193,115 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return temp;
     }
 
-    // R6 -->
     @Override
     public boolean fjern(T verdi) {
-        // Skal fjerne (og returnere) verdien på posisjon indeks (som først må sjekkes)
-            //
+        //Sjekker om verdi er null;
+        if(verdi == null) {
+            return false;
+        }
 
-        throw new UnsupportedOperationException("På vei ;) - Ruben");
+        Node<T> temp = hode;
+
+        // Hvis verdi ikke er i listen, skal metoden returnere false
+        while (temp != null) {
+            if (temp.verdi.equals(verdi)) {
+                break;
+            }
+            temp = temp.neste;
+        }
+        if (temp == null) {
+            return false;
+        }
+
+        // Hvis den første verdien skal fjernes
+        if (temp == hode) {
+            hode = hode.neste;
+
+            if (hode != null) {
+                hode.forrige = null;
+            } else {
+                hale = null;
+            }
+        }
+
+        // Hvis den siste verdien skal fjernes
+        else if (temp == hale) {
+            hale = hale.forrige;
+            hale.neste = null;
+        }
+
+        // Hvis en verdi mellom to andre skal fjernes
+        else {
+            temp.forrige.neste = temp.neste;
+            temp.neste.forrige = temp.forrige;
+        }
+
+        temp.verdi = null;
+        temp.forrige = temp.neste = null;
+
+        antall--; // Oppdaterer antall
+        endringer++; // Oppdaterer endringer
+        return true; // Returnerer true;
     }
 
     @Override
     public T fjern(int indeks) {
-        // Skal fjerne verdi fra listen og så returnere true
-            //
 
-        throw new UnsupportedOperationException("På vei ;) - Ruben");
+        indeksKontroll(indeks, false);
+
+        Node<T> temp = hode;
+        T verdi;
+
+        // Hvis indeks er lik 0 så skal den første noden fjernes
+        if(indeks == 0) {
+            verdi = temp.verdi;
+
+            // Hvis listen ikke er tom
+            if (temp.neste != null) {
+                hode = temp.neste; // Sett hode sin forrige peker en til høyre
+                hode.forrige = null; // Oppdaterer hode til forrige node
+            }
+            // Hvis listen er tom
+            else {
+                hode = null; // Oppdaterer hode til null
+                hale = null; // Oppdaterer hale til null
+            }
+
+        }
+        // Hvis indeks er lik antall skal den siste node fjernes
+        else if(indeks == antall - 1) {
+            temp = hale;
+            verdi = hale.verdi;
+            hale = temp.forrige; // Sett hode sin forrige peker en til venstre
+            hale.neste = null; //Oppdater hale til null
+        }
+        // Fjerner noden mellom to noder og oppdater pekere
+        else {
+            for (int i = 0; i < indeks; i++) {
+                temp = temp.neste;
+            }
+            verdi = temp.verdi;
+
+            temp.forrige.neste = temp.neste; //Noden til venstre peker nå på noden til høyre
+            temp.neste.forrige = temp.forrige; //Noden til høyre peker nå på noden til venstre
+        }
+        antall--; // Oppdaterer antall
+        endringer++; // Oppdaterer endringer
+        return verdi; // Returner posisjon indeks
     }
 
-    // R7 -->
     @Override
     public void nullstill() {
-        // Skal «tømme» listen og nulle alt slik at «søppeltømmeren» kan hente alt som ikke lenger brukes.
+        // Tømmer listen og nuller alt
+        for (Node<T> temp = hode; temp != null; temp = null) {
+            temp.verdi = null;
+            temp.forrige = temp.neste = null;
+        }
 
-        // METODE 1:
+        hode = hale = null;
 
-        // Starter i hode og går mot hale ved hjelpe pekeren neste
-            //
-
-        // Sett både hode og hale til null, antall til 0 og endringer økes
-            //
-
-
-        // METODE 2:
-
-        // Metode fjern(0) aka. den første noden fjernes, som går inntil listen er tom
-            //
-
-        throw new UnsupportedOperationException("På vei ;) - Ruben");
+        antall = 0;
+        endringer++;
     }
 
     @Override
@@ -275,24 +350,18 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
     }
 
-
-    // R8b -->
     @Override
     public Iterator<T> iterator() {
         // Returnere en instans av iteratorklassen
-
-        throw new UnsupportedOperationException("På vei ;) - Ruben");
+        return new DobbeltLenketListeIterator();
     }
 
-    // R8d -->
     public Iterator<T> iterator(int indeks) {
         // Indeksen er lovlig
-            //indeksKontroll()
+        indeksKontroll(indeks, false);
 
         // Returnere en instans av iteratorklassen ovenfor
-            // ^^
-
-        throw new UnsupportedOperationException("På vei ;) - Ruben");
+        return new DobbeltLenketListeIterator(indeks);
     }
 
     private class DobbeltLenketListeIterator implements Iterator<T> {
@@ -306,15 +375,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             iteratorendringer = endringer;  // teller endringer
         }
 
-        // R8c -->
         private DobbeltLenketListeIterator(int indeks) {
+            indeksKontroll(indeks, false);
+
             // Sett pekeren "denne" til noden som hører til indeks
-                //
-
-            // Resten av koden er lik konstruktøren ovenfor
-                //^^
-
-            throw new UnsupportedOperationException("På vei ;) - Ruben");
+            denne = finnNode(indeks);
+            fjernOK = false;  // blir sann når next() kalles
+            iteratorendringer = endringer;  // teller endringer
         }
 
         @Override
@@ -322,51 +389,68 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             return denne != null;  // denne koden skal ikke endres!
         }
 
-        // R8a -->
         @Override
         public T next() {
             // Sjekk om iteratorendringer er lik endringer
-                //
-
-            // Iteratorendringer ikke er lik endringer
-                // throw new ConcurrentModificationException("teratorendringer ikke er lik endringer");
+            if (endringer != iteratorendringer) {
+                throw new ConcurrentModificationException("Iteratorendringer er ikke lik endringer");
+            }
 
             // Det er ikke flere igjen i listen
-                // throw new NoSuchElementException("det ikke er flere igjen i listen");
+            else if (!hasNext()) {
+                throw new NoSuchElementException("Det ikke er flere verdier igjen i listen");
+            }
 
-            throw new UnsupportedOperationException("På vei ;) - Ruben");
+            fjernOK = true; // fjernOK settes til true
+            T tmp = denne.verdi;
+            denne = denne.neste; // Denne flyttes til den neste node
+
+            return tmp; // Verdien til denne returneres
         }
 
-        // R9 -->
         @Override
         public void remove() {
+            Node<T> temp;
+            if (denne == null) {
+                temp = (hale);
+            } else {
+                temp = (denne.forrige);
+
+            }
+
             // Hvis det ikke er tillatt å kalle denne metoden
-                // throw new IllegalStateException("Det ikke er tillatt å kalle denne metoden");
+            if (!fjernOK) {
+                throw new IllegalStateException("Det ikke er tillatt å kalle denne metoden");
+            }
 
             // Hvis endringer og iteratorendringer er forskjellige,
-                // throw new Concurrent-ModificationException("Endringer og iteratorendringer er forskjellige");
+            if (iteratorendringer != endringer) {
+                throw new ConcurrentModificationException("Endringer og iteratorendringer er forskjellige");
+            }
 
             // Om de to ovenfor passeres settes fjernOK til usann/false
-                // ?
+            fjernOK = false;
 
-            // Noden rett til venstre for p fjernes
-                // Den som skal fjernes er eneste verdi (antall == 1) --> Hode og hale må nulles
-                    //
-                // Den siste skal fjernes (denne == null) --> Hale må oppdateres
-                    //
-                // Den første skal fjernes (denne.forrige == hode) --> Hode må oppdateres
-                    //
-                // En node inne i listen skal fjernes (noden denne.forrige) --> Pekerne i nodene på hver må side oppdateres
-                    //
+            // Den som skal fjernes er eneste verdi (antall == 1) --> Hode og hale må nulles
+            if (temp == hode) {
+                if (antall == 1) {
+                    hode = hale = null;
+                }
+                else{
+                    hode = hode.neste;
+                    hode.forrige = null;
+                }
+            }
 
-            // Antall Reduseres
-                //
+            // Den siste skal fjernes (denne == null) --> Hale må oppdateres
+            else {
+                hale = hale.forrige;
+                hale.neste = null;
+            }
 
-            // Øker endringer og iteratorendringer
-                //
-
-
-            throw new UnsupportedOperationException("På vei ;) - Ruben");
+            antall--; // Antall Reduseres
+            endringer++; // Øker endringer
+            iteratorendringer++; // Øker iteratorendringer
         }
 
     } // DobbeltLenketListeIterator
