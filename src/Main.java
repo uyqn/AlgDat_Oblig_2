@@ -1,5 +1,10 @@
 public class Main {
     public static void main(String[] args) {
+        Integer[] i = {};
+        DobbeltLenketListe<Integer> iliste = new DobbeltLenketListe<>(i);
+        System.out.println(iliste.subliste(0, 0));
+
+        /*
         Character[] c = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',};
 
         DobbeltLenketListe<Character> liste = new DobbeltLenketListe<>(c);
@@ -9,9 +14,6 @@ public class Main {
         System.out.println(liste.subliste(8, liste.antall()));
         System.out.println(liste.subliste(0, 11));
 */
-
-        System.out.println(liste.indeksTil('I'));
-        System.out.println(liste.inneholder('A'));
 
 
         /*
@@ -36,6 +38,7 @@ public class Main {
         System.out.println(liste + " " + liste.omvendtString());
         // Utskrift: [Lars, Anders, Kari, Per] [Per, Kari, Anders, Lars]
          */
+
 
     }
 }

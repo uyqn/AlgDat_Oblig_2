@@ -87,15 +87,19 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public Liste<T> subliste(int fra, int til) {
         fratilKontroll(fra, til);                                   //Sjekker intervall med fratilkontroll
         DobbeltLenketListe<T> subList = new DobbeltLenketListe<>(); //Instansierer en ny DobbeltLenketListe
-        Node<T> current = finnNode(fra);                            //Finner node med index = fra;
 
-        //Looper igjennom og legger elementer til subliste med leggInn og hent() metodene.
-        for(int i = fra; i < til; i++) {
-            subList.leggInn(current.verdi);
-            current = current.neste;                                //Oppdaterer peker til neste node
+        if (antall > 0) {                                           //Dersom listen ikke er tom
+            Node<T> current = finnNode(fra);                        //Finner node med index = fra;
+
+            //Looper igjennom og legger elementer til subliste med leggInn og hent() metodene.
+            for (int i = fra; i < til; i++) {
+                subList.leggInn(current.verdi);
+                current = current.neste;                            //Oppdaterer peker til neste node
+            }
+            subList.endringer = 0;                                  //Setter endringer til 0;
         }
-        subList.endringer = 0;                                      //Setter endringer til 0;
-        return subList;                                             //Returnerer subliste.
+
+        return subList;                                             //Returner subliste
     }
 
     @Override
