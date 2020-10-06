@@ -200,7 +200,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             return false;
         }
 
-        Node<T> temp = hode; // Setter temp lik hode
+        Node<T> temp = hode;
 
         // Hvis verdi ikke er i listen, skal metoden returnere false
         while (temp != null) {
@@ -246,10 +246,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T fjern(int indeks) {
-        // Indeksen er lovlig
+
         indeksKontroll(indeks, false);
 
-        Node<T> temp = hode; // Setter Temp lik hode
+        Node<T> temp = hode;
         T verdi;
 
         // Hvis indeks er lik 0 så skal den første noden fjernes
