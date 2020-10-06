@@ -205,7 +205,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             return false;
         }
 
-        Node<T> temp = hode; // Setter midlertidig lik hode
+        Node<T> temp = hode; // Setter den midlertidige lik hode
 
         // Hvis verdi ikke er i listen, skal metoden returnere false
         while (temp != null) {
@@ -254,7 +254,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         indeksKontroll(indeks, false);
 
-        Node<T> temp = hode; // Setter midlertidig lik hode
+        Node<T> temp = hode; // Setter den midlertidige lik hode
         T verdi;
 
         // Hvis indeks er lik 0 så skal den første noden fjernes
@@ -381,6 +381,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         private DobbeltLenketListeIterator(int indeks) {
+            // Indeksen er lovlig
             indeksKontroll(indeks, false);
 
             // Sett pekeren "denne" til noden som hører til indeks
@@ -407,10 +408,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             }
 
             fjernOK = true; // fjernOK settes til true
-            T tmp = denne.verdi;
+            T temp = denne.verdi; // Setter den midlertidige lik denne sin verdi
             denne = denne.neste; // Denne flyttes til den neste node
 
-            return tmp; // Verdien til denne returneres
+            return temp; // Verdien til temo returneres
         }
 
         @Override
@@ -420,7 +421,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 temp = (hale);
             } else {
                 temp = (denne.forrige);
-
             }
 
             // Hvis det ikke er tillatt å kalle denne metoden
