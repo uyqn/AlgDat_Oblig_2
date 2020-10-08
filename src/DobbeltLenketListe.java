@@ -178,15 +178,16 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int indeksTil(T verdi) {
-
+        Node<T> current = hode;
         if (verdi != null) {
-            for (int i = 0; i < antall(); i++) {    //Løper gjennom liste for å sammenlikne verdier.
-                if (verdi.equals(hent(i))) {      //Sammenlikner verdi med verdi hentet fra hent metoden.
-                    return i;                   //returnerer indeks til verdi dersom den er lik den oppgitte verdi.
+            for (int i = 0; i < antall(); i++) {
+                if (verdi.equals(current.verdi)) {      //Sammenlikner verdi med verdi i current noden .
+                    return i;                           //Returnerer indeks til noden dersom verdien er lik den oppgitte verdi.
                 }
+                current = current.neste;
             }
         }
-        return -1;                              //Ellers returneres -1.
+        return -1;                                      //Ellers returneres -1.
     }
 
     @Override
