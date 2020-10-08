@@ -21,12 +21,15 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 * Oppgave 1: 
 Metodene int antall() og Boolean tom() var forhåldsvis rettfrem, enkle metoder. 
 Konstruktøren var vanskeligere å forstå og denne krevde at jeg brukte en del tid på å sette meg inn i "tankegangen" rundt noder og lenket liste.
-* Oppgave 2: ...
+* Oppgave 2:
+a) Metodene toString og omvendtString legger bare til verdien i stringBuilderen med peker på hodet og halen henholdsvis. Pekeren itererer gjennom hele listen og returnerer resultatet. Dersom listen er tom returnerer den bare "[]".
+b) Metoden ble implementert ved å bare oppdatere hale.neste til en ny node som peker tilbake til halen (neste = null). Halen blir deretter bare oppdatert til den nye noden som ble lagt til.
 * Oppgave 3:
-a) Startet med å lage en metode som bare fant noden basert på hode, forså å utvikle den og gjøre den mer kompleks når jeg fikk det til å funke. Gjorde denne etter jeg lagde konstruktøren i oppgave 1, gikk greit da jeg allerede hadde tankegangen inne. 
+a) Startet med å lage en metode som bare fant noden basert på hode, forså å utvikle den og gjøre den mer kompleks når jeg fikk det til å funke. Gjorde denne etter jeg lagde konstruktøren i oppgave 1, gikk greit da jeg allerede hadde tankegangen inne.
+b) Sublisten starter først med å sjekke om listen er tom. Dersom den ikke er tom bruker den finnNode metoden for å finne noden den starter å peke på. Deretter itererer den (til - fra - 1) ganger og hver gang legger til noden bakerst via metoden implementert fra Oppgave 3b).
 * Oppgave 4:
 Denne lagde jeg først veldig enkelt ved å bruke hent metoden og unngå null verdi med en if-setning. Videre effektiviserte jeg metoden ved å bruke pekere isteden for på gå igjennom hele hent metoden hver gang. Dermed fikk metoden effektivitet O(n) mot tidligere O(n^2).
-* Oppgave 5: ...
+* Oppgave 5: Etter at metoden har passert indekskontrollen og null-kontrollen så sjekker den om listen er tom. Dersom den er tom så blir hode og hale til den nye noden. Dersom den ikke er tom så sjekker den om indeks er 0 (hode oppdateres) eller indeks er lik antall (hale oppdateres). Ellers så bruker metoden finnNode metoden for å finne noden til venstre for den nye noden som skal legges til. Den finner også noden som skal være til høyre for den nye noden. Deretter så opprettes den nye noden med pekere til venstre og høyre og setter de to nodene som allerede eksisterte sin forrige og neste til lik hverandre.
 * Oppgave 6: ...
 * Oppgave 7: ...
 * Oppgave 8: ...
