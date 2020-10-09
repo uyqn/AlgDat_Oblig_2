@@ -449,7 +449,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 hode.forrige = null;
             }
 
-            // En node unne i listen skal fjernes (denne.forrige == hode) --> Pekerene må oppdateres
+            // En node unne i listen skal fjernes (denne.forrige) --> Pekerene må oppdateres
             else {
                 denne.forrige = denne.forrige.forrige;
                 denne.forrige.neste = denne;
