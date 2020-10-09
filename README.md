@@ -9,7 +9,7 @@ Oppgaven er levert av følgende studenter:
 * Marius Havnaas, s341877, s341877@oslomet.no
 * Ruben Sønstabø Johanssen, s341851, s341851@oslomet.no
 
-Vi har brukt git til å dokumentere arbeidet vårt. Vi har 60 commits totalt, og hver logg-melding beskriver det vi har gjort av endringer.
+Vi har brukt git til å dokumentere arbeidet vårt. Vi har 61 commits totalt, og hver logg-melding beskriver det vi har gjort av endringer.
 
 I oppgaven har vi hatt følgende arbeidsfordeling:
 * Uy har hatt hovedansvar for oppgave 2, 3b, og 5
@@ -35,3 +35,9 @@ Denne lagde jeg først veldig enkelt ved å bruke hent metoden og unngå null ve
 * Oppgave 8: a) Metoden «next()» sjekker først om endringer er lik iteratorendringer, og kaster i tilfelle en «ConcurrentModificationException» om det ikke er tilfelle. Deretter kaster den en «NoSuchElementException» om det ikke er flere igjen i listen gjennom if setning og «hasNext()». b) Metoden «Iterator<T> iterator()» er veldig enkel og grei, og returnerer bare en ny instans av iteratorklassen. c) Konstuktøren «private DobbeltLenketListeIterator(int indeks)» er helt lik den over med unntak av at denne nå peker på noden som hører til indeksen gjennom «finnNode(indeks)». La også inn en metoden indeksKontroll() i starten av konstuktøren. d) Metoden Iterator<T> iterator(int indeks) er også ganske simpel og sjekker her først om indeksen er lovlig gjennom metoden indeksKontroll (), og så returnerer den en instans av iteratorklassen.
 * Oppgave 9: Metoden «void remove()» startes av med å sjekke om det er lov til å kalle metoden ved å  evt. kaste en «IllegalStateException» (if !fjernOK), sjekker om endringer og iteratorendringer er forskjellige ved å evt. kaste en ConcurrentModificationException og setter «fjernOK» lik usann om begge passerer. Neste del var litt tricky, men følgte oppgavens fire punkter; om antall er eneste verdi så må hode og hale settes lik null, om «denne» er lik null så må hale oppdateres, om «denne.forrige» er lik hode så må hode oppdateres og til slutt om «denne.forrige» skal fjernes så oppdateres pekerne på hver side. Avslutter med å oppdatere antall, endringer og iteratorendringer.
 * Oppgave 10: Her ble det forsøkt å effektivisere sorteringen ved bruk av quick- eller mergesort. Dette ble vanskelig å få til da oppgaveteksten presiserte at det skulle være en "på plass"-sortering. Oppgaven ble løst både ved å flytte pekere og ved å flytte verdiene inne i nodene. Slik vi så det var det ingen av de to variantene som hadde noen nevneverdig fordel over den andre mtp. effektivitet. 
+
+Warnings i «DobbeltLenketListe.java»:
+-	Method will throw an exception when parameter is null :64
+-	Method will throw an exception when parameter is null :116
+-	Method will throw an exception when parameter is null :137
+-	Method will throw an exception when parameter is null :194
